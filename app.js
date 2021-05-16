@@ -33,11 +33,11 @@ d3.csv("data.csv").then(function(chartData) {
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(chartData, d => d.healthcare)])
+      .domain([0, d3.max(chartData, d => d.healthcare)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(chartData, d => d.income)])
+      .domain([35000, d3.max(chartData, d => d.income)])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -96,12 +96,12 @@ d3.csv("data.csv").then(function(chartData) {
       .attr("x", 0 - (height / 1.5))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Median Household Income");
+      .text("Median Household Income ($)");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width/3}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Percent of Residents with Healthcare");
+      .text("Residents Without Healthcare (%)");
   }).catch(function(error) {
     console.log(error);
   });
